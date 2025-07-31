@@ -1,0 +1,27 @@
+video {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  display: block;
+  margin: 0 auto;
+}
+
+.Section_body_Pres {
+  display: flex;
+  gap: 1rem;
+  padding: 0 1rem;
+  align-items: center;
+}
+
+.Section_body_Pres img {
+  width: 40%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.Section_body_Pres p {
+  flex: 1;
+}

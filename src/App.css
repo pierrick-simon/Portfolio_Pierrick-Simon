@@ -1,0 +1,84 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #f0f0f0;
+}
+
+.Section {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: #c3c3c3;
+  padding-inline: 2rem;
+  padding-block: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  scroll-margin-top: 70px;
+}
+
+.Section_body {
+  padding-left: 1rem;
+}
+
+.Section_body_projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+} 
+
+.Section_body_projects a {
+  width: calc(33.333%);
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.Section_body_projects img {
+  width: 90%;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.Section_body_projects a:hover {
+  transform: scale(1.1);
+}
+
+.btn {
+  background-color: #0056b3;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.Title {
+  max-width: 450px;
+  margin: 2rem auto;
+  background: #c3c3c3;
+  padding-inline: 2rem;
+  padding-block: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.Year {
+  margin-left: 2rem;
+  font-size: 1.2rem;
+}
+
+.contributor {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.demo_cuddle li > strong + ul {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+h4 {
+  margin-top: 0.3rem;
+}
