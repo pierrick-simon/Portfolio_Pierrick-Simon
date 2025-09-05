@@ -8,6 +8,7 @@ import Cuddle from './Routes/Cuddle';
 import MyWorld from './Routes/MyWorld';
 import MyRadar from './Routes/MyRadar';
 import Watchlist from './Routes/Watchlist';
+import Meme_Application from './Routes/Meme_Application';
 
 
 import Header from './Routes/Margins/Header';
@@ -51,6 +52,7 @@ function App() {
       <Route path="/MyWorld" element={<Page name={MyWorld} />} />
       <Route path="/MyRadar" element={<Page name={MyRadar} />} />
       <Route path="/Watchlist" element={<Page name={Watchlist} />} />
+      <Route path="/Meme_Application" element={<Page name={Meme_Application} />} />
     </Routes>
   );
 }

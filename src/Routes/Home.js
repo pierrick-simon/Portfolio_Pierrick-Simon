@@ -46,6 +46,7 @@ function Project() {
       <h2>Mes Projets</h2>
       <h2 className='Section_body'>Perso</h2>
       <div className='Section_body_projects'>
+        <ProjectCard name="Meme_Application" />
         <ProjectCard name="Portfolio" />
         <ProjectCard name="Watchlist" />
       </div>
