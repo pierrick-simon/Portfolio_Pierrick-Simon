@@ -36,7 +36,7 @@ function Sacha() {
 
 function Ariel() {
     return (
-        <a>Ariel Amriou</a>
+        <a href="https://www.linkedin.com/in/arielamriou/" target='_blank' rel='noreferrer'>Ariel Amriou</a>
     );
 }
 
