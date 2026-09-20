@@ -40,4 +40,17 @@ function Ariel() {
     );
 }
 
-export default { Pierrick, Ariel, Loan, Philibert, Antoine, Maxime, Sacha};
+function Armand() {
+    return (
+        <a href="https://www.linkedin.com/in/armand-lecomte/" target='_blank' rel='noreferrer'>Armand Lecompte</a>
+    );
+}
+
+function Natan() {
+    return (
+        <a href="https://www.linkedin.com/in/pereira-natan/" target='_blank' rel='noreferrer'>Natan Pereira</a>
+    );
+}
+
+
+export default { Pierrick, Ariel, Loan, Philibert, Antoine, Maxime, Sacha, Armand, Natan};
