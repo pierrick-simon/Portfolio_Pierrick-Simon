@@ -53,14 +53,14 @@ function Body( {page} ) {
   );
 }
 
-function NanoTeckSpice() {
+function NanoTekSpice() {
     return (
       <React.StrictMode>
-        <Header Title={"NanoTeckSpice - Duo (4 semaines)"} SubTitle={"C++ · fev. 2026 - mars 2026"}/>
-        <Nav page="NanoTeckSpice"/>
-        <Body page="NanoTeckSpice"/>
+        <Header Title={"NanoTekSpice - Duo (4 semaines)"} SubTitle={"C++ · fev. 2026 - mars 2026"}/>
+        <Nav page="NanoTekSpice"/>
+        <Body page="NanoTekSpice"/>
       </React.StrictMode>
     );
   }
   
-  export default NanoTeckSpice;
+  export default NanoTekSpice;

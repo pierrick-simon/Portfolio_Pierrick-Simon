@@ -53,7 +53,8 @@ function Project() {
       <h2 className='Section_body'>Académique</h2>
       <h3 className='Year'>Teck 2</h3>
       <div className='Section_body_projects'>
-        <ProjectCard name="NanoTeckSpice" />
+        <ProjectCard name="NanoTekSpice" />
+        <ProjectCard name="Arcade" />
       </div>
       <h3 className='Year'>Teck 1</h3>
       <div className='Section_body_projects'>
