@@ -52,5 +52,10 @@ function Natan() {
     );
 }
 
+function Sandes() {
+    return (
+        <a href="https://www.linkedin.com/in/sandes-savarimuthu/" target='_blank' rel='noreferrer'>Sandes Savarimuthu</a>
+    );
+}
 
-export default { Pierrick, Ariel, Loan, Philibert, Antoine, Maxime, Sacha, Armand, Natan};
+export default { Pierrick, Ariel, Loan, Philibert, Antoine, Maxime, Sacha, Armand, Natan, Sandes };

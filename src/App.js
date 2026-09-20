@@ -12,6 +12,7 @@ import Meme_Application from './Routes/Meme_Application';
 import NanoTekSpice from './Routes/NanoTekSpice';
 import Arcade from './Routes/Arcade';
 import RayTracer from './Routes/RayTracer';
+import Cartridge from './Routes/Cartridge';
 
 
 import Header from './Routes/Margins/Header';
@@ -59,6 +60,7 @@ function App() {
       <Route path="/NanoTekspice" element={<Page name={NanoTekSpice} />} />
       <Route path="/Arcade" element={<Page name={Arcade} />} />
       <Route path="/RayTracer" element={<Page name={RayTracer} />} />
+      <Route path="/Cartridge" element={<Page name={Cartridge} />} />
     </Routes>
   );
 }
