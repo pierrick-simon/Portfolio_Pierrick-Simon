@@ -7,34 +7,51 @@ function About() {
     <div className='Section' id='about'>
       <h2>À propos de moi</h2>
       <div className='Section_body'>
-        <p>Étudiant en développement informatique à Epitech, je transforme des idées en projets concrets.</p>
-      </div>
-    </div>
-  );
-}
+        <p>
+          Étudiant en 3ᵉ année à Epitech Paris (Promo 2029), en formation
+          d’Expert en Ingénierie Logicielle.
+        </p>
 
-function Skill() {
-  return (
-    <div className='Section' id='skill'>
-      <h2>Compétences</h2>
-      <div className='Section_body'>
-        <h3>Techniques</h3>
+        <p>
+          Actuellement en recherche d’un stage de 4 à 5 mois, d’avril à août 2027,
+          dans le développement logiciel.
+        </p>
+
+        <p>
+          En parallèle de mes études, je travaille toujours à temps partiel en tant
+          qu’Assistant Pédagogique à Epitech Paris, où j’accompagne et encadre les
+          étudiants de première année dans leur apprentissage de la programmation.
+        </p>
+
+        <h3>Missions principales</h3>
         <ul>
-          <li>C, Python, JavaScript, HTML, CSS, GO</li>
-          <li>Environnement Windows / Linux, GitHub, Shell, Docker, React</li>
+          <li>Accompagnement pédagogique en programmation (C, algorithmique, structures de données)</li>
+          <li>Support technique et aide à la résolution de problèmes sur les projets</li>
+          <li>Animation de sessions de travail collaboratif et de code reviews</li>
+          <li>Mentorat sur l’organisation, les bonnes pratiques de développement et la gestion de projet</li>
         </ul>
-        <h3>Humaines</h3>
+
+        <h3>Compétences clés</h3>
         <ul>
-          <li>Travail en équipe</li>
-          <li>Autonomie</li>
-          <li>Sens de l'organisation</li>
-          <li>Rigoureux</li>
+          <li><strong>Développement :</strong> C++, C, Python, FastAPI, Rust, React, JavaScript</li>
+          <li><strong>Technologies :</strong> Git, API REST, Okta, Model Context Protocol (MCP), Shell, Docker, Linux</li>
+          <li><strong>Soft skills :</strong> Pédagogie, communication, travail collaboratif, autonomie</li>
+          <li>
+            <strong>Expérience précédente :</strong> Stage développeur IA chez ENGIE
+            (août - décembre 2025), avec le développement d’agents IA, de serveurs MCP
+            et d’une application full stack.
+          </li>
         </ul>
+
         <h3>Langues</h3>
         <ul>
-          <li>Français &ensp; (Langue maternelle)</li>
-          <li>Anglais &ensp; (C1, 3 années passées en Angleterre)</li>
+          <li><strong>Français</strong> (Langue maternelle)</li>
+          <li><strong>Anglais</strong> (C1, 3 années passées en Angleterre)</li>
         </ul>
+
+        <p>
+          Basé en Île-de-France et ouvert aux opportunités en développement logiciel.
+        </p>
       </div>
     </div>
   );
@@ -51,7 +68,7 @@ function Project() {
         <ProjectCard name="Watchlist" />
       </div>
       <h2 className='Section_body'>Académique</h2>
-      <h3 className='Year'>Teck 2</h3>
+      <h3 className='Year'>Tek 2 (2025-2026)</h3>
       <div className='Section_body_projects'>
         <ProjectCard name="RayTracer" />
         <ProjectCard name="NanoTekSpice" />
@@ -60,7 +77,7 @@ function Project() {
         <ProjectCard name="StoneAnalysis" />
         <ProjectCard name="The-Plazza" />
       </div>
-      <h3 className='Year'>Teck 1</h3>
+      <h3 className='Year'>Tek 1 (2024-2025)</h3>
       <div className='Section_body_projects'>
         <ProjectCard name="Wolf3D" />
         <ProjectCard name="42sh" />
@@ -99,7 +116,18 @@ function Experience() {
     <div className='Section' id='experience'>
       <h2>Mes Experiences</h2>
         <div className='Section_body'>
-          <h3>N/A</h3>
+          <h3>Epitech - Assitant pédagogiquel</h3>
+          <ul>
+            <li>fev. 2026 - mars 2027</li>
+            <li>Accompagnement des étudiants de première année en programmation (C, algorithmique, structures de code).</li>
+            <li>Animation de sessions de travail, code reviews et accompagnement méthodologique.</li>
+          </ul>
+          <h3>Engie - Stagiaire Développeur IA/Logiciel</h3>
+          <ul>
+            <li>août 2025 - déc. 2025</li>
+            <li>Développement d’agents IA et de serveurs MCP pour automatiser les tâches du département SPM.</li>
+            <li>Développement full stack de ReleaseLab (FastAPI, React, Okta) pour la gestion des environnements.</li>
+          </ul>
         </div>
     </div>
   );
@@ -137,7 +165,6 @@ function Home() {
   return (
     <React.StrictMode>
       <About />
-      <Skill />
       <Project />
       <Formation />
       <Experience />
