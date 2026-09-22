@@ -42,7 +42,7 @@ function Body( {page} ) {
         <h2>Liens</h2>
         <div className='Section_body'>
           <div className='contributor'>
-            <a>Contributor : </a>
+            Contributor :
             <Link.Loan />
             <Link.Pierrick />
           </div>

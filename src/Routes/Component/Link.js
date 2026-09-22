@@ -58,4 +58,10 @@ function Sandes() {
     );
 }
 
-export default { Pierrick, Ariel, Loan, Philibert, Antoine, Maxime, Sacha, Armand, Natan, Sandes };
+function Rayan() {
+    return (
+        <a href="https://www.linkedin.com/in/rayan-ouerdane/" target='_blank' rel='noreferrer'>Rayan Ouerdane</a>
+    );
+}
+
+export default { Pierrick, Ariel, Loan, Philibert, Antoine, Maxime, Sacha, Armand, Natan, Sandes, Rayan};

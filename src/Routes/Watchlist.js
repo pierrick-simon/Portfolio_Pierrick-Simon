@@ -38,7 +38,7 @@ function Body( {page} ) {
         <div className='Section_body'>
           <p>Repo GitHub : <a href='https://github.com/skl1017/PoCSoftware2025-rush' target='_blank' rel='noreferrer'>{page}</a></p>
           <div className='contributor'>
-            <a>Contributor : </a>
+            Contributor :
             <Link.Loan />
             <Link.Pierrick />
           </div>

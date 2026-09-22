@@ -45,7 +45,7 @@ function Body( {page} ) {
         <div className='Section_body'>
           <p>Repo GitHub : <a href='https://github.com/pierrick-simon/Meme_Application' target='_blank' rel='noreferrer'>{page}</a></p>
           <div className='contributor'>
-            <a>Contributor : </a>
+            Contributor :
             <Link.Pierrick />
           </div>
         </div>

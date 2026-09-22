@@ -41,46 +41,46 @@ function Body( {page} ) {
           <ul className='demo_cuddle'>
           <li><strong>CSV Handling</strong>
             <ul>
-              <li><code>df_read_csv(filename, separator)</code> – Read a CSV file into a dataframe.</li>
-              <li><code>df_write_csv(dataframe, filename)</code> – Write a dataframe back to a CSV file.</li>
+              <li><code>df_read_csv(filename, separator)</code> - Read a CSV file into a dataframe.</li>
+              <li><code>df_write_csv(dataframe, filename)</code> - Write a dataframe back to a CSV file.</li>
             </ul>
           </li>
           <li><strong>Data Exploration</strong>
             <ul>
-              <li><code>df_head(dataframe, n)</code> – Return the first <code>n</code> rows.</li>
-              <li><code>df_tail(dataframe, n)</code> – Return the last <code>n</code> rows.</li>
-              <li><code>df_shape(dataframe)</code> – Return number of rows and columns.</li>
-              <li><code>df_info(dataframe)</code> – Print column names and types.</li>
-              <li><code>df_describe(dataframe)</code> – Summary statistics for numerical columns.</li>
+              <li><code>df_head(dataframe, n)</code> - Return the first <code>n</code> rows.</li>
+              <li><code>df_tail(dataframe, n)</code> - Return the last <code>n</code> rows.</li>
+              <li><code>df_shape(dataframe)</code> - Return number of rows and columns.</li>
+              <li><code>df_info(dataframe)</code> - Print column names and types.</li>
+              <li><code>df_describe(dataframe)</code> - Summary statistics for numerical columns.</li>
             </ul>
           </li>
 
           <li><strong>Filtering and Selection</strong>
             <ul>
-              <li><code>df_filter(dataframe, column, filter_func)</code> – Return a new dataframe with rows that satisfy a condition.</li>
-              <li><code>df_get_value(dataframe, row, column)</code> – Get a single value.</li>
-              <li><code>df_get_values(dataframe, column)</code> – Get all values in a column.</li>
-              <li><code>df_get_unique_values(dataframe, column)</code> – Get unique values in a column.</li>
+              <li><code>df_filter(dataframe, column, filter_func)</code> - Return a new dataframe with rows that satisfy a condition.</li>
+              <li><code>df_get_value(dataframe, row, column)</code> - Get a single value.</li>
+              <li><code>df_get_values(dataframe, column)</code> - Get all values in a column.</li>
+              <li><code>df_get_unique_values(dataframe, column)</code> - Get unique values in a column.</li>
             </ul>
           </li>
 
           <li><strong>Sorting and Grouping</strong>
             <ul>
-              <li><code>df_sort(dataframe, column, sort_func)</code> – Sort rows based on a column and a custom comparison function.</li>
-              <li><code>df_groupby(dataframe, group_column, target_columns, agg_func)</code> – Group by a column and aggregate one or more columns.</li>
+              <li><code>df_sort(dataframe, column, sort_func)</code> - Sort rows based on a column and a custom comparison function.</li>
+              <li><code>df_groupby(dataframe, group_column, target_columns, agg_func)</code> - Group by a column and aggregate one or more columns.</li>
             </ul>
           </li>
 
           <li><strong>Transformation</strong>
             <ul>
-              <li><code>df_apply(dataframe, column, apply_func)</code> – Apply a function to transform all values in a column.</li>
-              <li><code>df_to_type(dataframe, column, column_type)</code> – Convert a column to a different data type.</li>
+              <li><code>df_apply(dataframe, column, apply_func)</code> - Apply a function to transform all values in a column.</li>
+              <li><code>df_to_type(dataframe, column, column_type)</code> - Convert a column to a different data type.</li>
             </ul>
           </li>
 
           <li><strong>Memory Management</strong>
             <ul>
-              <li><code>df_free(dataframe)</code> – Free all memory associated with the dataframe.</li>
+              <li><code>df_free(dataframe)</code> - Free all memory associated with the dataframe.</li>
             </ul>
           </li>
 
@@ -100,7 +100,7 @@ function Body( {page} ) {
         <h2>Liens</h2>
         <div className='Section_body'>
           <div className='contributor'>
-            <a>Contributor : </a>
+            Contributor :
             <Link.Philibert />
             <Link.Pierrick />
           </div>
