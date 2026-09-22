@@ -58,6 +58,7 @@ function Project() {
         <ProjectCard name="Cartridge" />
         <ProjectCard name="Arcade" />
         <ProjectCard name="StoneAnalysis" />
+        <ProjectCard name="The-Plazza" />
       </div>
       <h3 className='Year'>Teck 1</h3>
       <div className='Section_body_projects'>

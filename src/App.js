@@ -14,6 +14,7 @@ import Arcade from './Routes/Arcade';
 import RayTracer from './Routes/RayTracer';
 import Cartridge from './Routes/Cartridge';
 import StoneAnalysis from './Routes/StoneAnalysis';
+import The_Plazza from './Routes/The-Plazza';
 
 
 import Header from './Routes/Margins/Header';
@@ -63,6 +64,7 @@ function App() {
       <Route path="/RayTracer" element={<Page name={RayTracer} />} />
       <Route path="/Cartridge" element={<Page name={Cartridge} />} />
       <Route path="/StoneAnalysis" element={<Page name={StoneAnalysis} />} />
+      <Route path="/The-Plazza" element={<Page name={The_Plazza} />} />
     </Routes>
   );
 }
