@@ -154,7 +154,7 @@ function Experience() {
       <ul className='timeline'>
         <li className='timeline-item'>
           <span className='timeline-date'>fév. 2026 - mars 2027</span>
-          <h3>Epitech - Assistant pédagogique</h3>
+          <h3>Epitech - Assistant Pédagogique</h3>
           <ul>
             <li>Accompagnement des étudiants de première année en programmation (C, algorithmique, structures de code).</li>
             <li>Animation de sessions de travail, code reviews et accompagnement méthodologique.</li>

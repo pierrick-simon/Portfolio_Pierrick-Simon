@@ -64,4 +64,6 @@ function Rayan() {
     );
 }
 
-export default { Pierrick, Ariel, Loan, Philibert, Antoine, Maxime, Sacha, Armand, Natan, Sandes, Rayan};
+const Links = { Pierrick, Ariel, Loan, Philibert, Antoine, Maxime, Sacha, Armand, Natan, Sandes, Rayan };
+
+export default Links;

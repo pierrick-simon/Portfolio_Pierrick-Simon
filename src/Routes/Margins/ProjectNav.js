@@ -1,15 +1,15 @@
 import './Margin.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 function Nav( {page, preview=false} ) {
-  const links = [
+  const links = useMemo(() => [
     { hash: 'about', label: 'Présentation' },
     { hash: 'functionality', label: 'Fonctionnalités' },
     { hash: 'directskill', label: 'Compétences' },
     ...(preview ? [{ hash: 'preview', label: 'Aperçu' }] : []),
     { hash: 'demo', label: 'Démo' },
     { hash: 'link', label: 'Liens' },
-  ];
+  ], [preview]);
 
   const [active, setActive] = useState(links[0].hash);
 
@@ -33,9 +33,9 @@ function Nav( {page, preview=false} ) {
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, [page, preview]);
+  }, [page, links]);
 
-  return (
+    return (
     <div className='Nav'>
       {links.map((link) => (
         <a

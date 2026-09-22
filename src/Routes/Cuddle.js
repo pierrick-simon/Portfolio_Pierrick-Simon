@@ -2,7 +2,6 @@ import './../App.css';
 import React from 'react';
 import Header from './Margins/Header';
 import Nav from './Margins/ProjectNav';
-import Video from './Component/Video';
 import ProjectPres from './Component/ProjectPres';
 import Link from './Component/Link';
 
