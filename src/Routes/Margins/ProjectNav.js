@@ -9,7 +9,7 @@ function Nav( {page, preview=false, demo=true} ) {
     ...(preview ? [{ hash: 'preview', label: 'Aperçu' }] : []),
     ...(demo ? [{ hash: 'demo', label: 'Démo' }] : []),
     { hash: 'link', label: 'Liens' },
-  ], [preview]);
+  ], [preview, demo]);
 
   const [active, setActive] = useState(links[0].hash);
 
