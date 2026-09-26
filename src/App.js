@@ -16,7 +16,7 @@ import Cartridge from './Routes/Cartridge';
 import StoneAnalysis from './Routes/StoneAnalysis';
 import The_Plazza from './Routes/The-Plazza';
 import Zappy from './Routes/Zappy';
-
+import ProfilsActifs from './Routes/ProfilsActifs';
 
 import Header from './Routes/Margins/Header';
 import Footer from './Routes/Margins/Footer';
@@ -67,6 +67,7 @@ function App() {
       <Route path="/StoneAnalysis" element={<Page name={StoneAnalysis} />} />
       <Route path="/The-Plazza" element={<Page name={The_Plazza} />} />
       <Route path="/Zappy" element={<Page name={Zappy} />} />
+      <Route path="/ProfilsActifs" element={<Page name={ProfilsActifs} />} />
     </Routes>
   );
 }

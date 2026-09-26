@@ -64,6 +64,12 @@ function Rayan() {
     );
 }
 
-const Links = { Pierrick, Ariel, Loan, Philibert, Antoine, Maxime, Sacha, Armand, Natan, Sandes, Rayan };
+function Andriamirado() {
+    return (
+        <a href="https://www.linkedin.com/in/andriamirado-ravelonahina-a02088343/" target='_blank' rel='noreferrer'>Andriamirado Ravelonahina</a>
+    );
+}
+
+const Links = { Pierrick, Ariel, Loan, Philibert, Antoine, Maxime, Sacha, Armand, Natan, Sandes, Rayan, Andriamirado };
 
 export default Links;
