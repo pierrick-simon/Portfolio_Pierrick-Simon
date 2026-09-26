@@ -169,6 +169,10 @@ function Experience() {
           </ul>
         </li>
         <li className='timeline-item'>
+          <span className='timeline-date'>mars 2026 - fev. 2027</span>
+          <h3>Pulse BDE Epitech - Membre</h3>
+        </li>
+        <li className='timeline-item'>
           <span className='timeline-date'>août 2025 - déc. 2025</span>
           <h3>Engie - Stagiaire Développeur IA/Logiciel</h3>
           <ul>
