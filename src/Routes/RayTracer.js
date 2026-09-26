@@ -65,7 +65,7 @@ function RayTracer() {
     return (
       <React.StrictMode>
         <Header Title={"RayTracer - Groupe de 4 (4 semaines)"} SubTitle={"C++ · avr. 2026 - mai 2026"}/>
-        <Nav page="RayTracer" preview="true"/>
+        <Nav page="RayTracer" preview={true}/>
         <Body page="RayTracer"/>
       </React.StrictMode>
     );

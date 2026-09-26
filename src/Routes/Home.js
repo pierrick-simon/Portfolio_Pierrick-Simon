@@ -93,7 +93,7 @@ function Project() {
       </div>
 
       <div className='project-group'>
-        <p className='group-label'>~/projets/tek3 · 2025-2026</p>
+        <p className='group-label'>~/projets/tek3 · 2026-2027</p>
         <div className='Section_body_projects'>
           <ProjectCard name="ProfilsActifs" />
         </div>
@@ -106,6 +106,7 @@ function Project() {
           <ProjectCard name="RayTracer" />
           <ProjectCard name="NanoTekSpice" />
           <ProjectCard name="Cartridge" />
+          <ProjectCard name="StartTrek" />
           <ProjectCard name="Arcade" />
           <ProjectCard name="StoneAnalysis" />
           <ProjectCard name="The-Plazza" />

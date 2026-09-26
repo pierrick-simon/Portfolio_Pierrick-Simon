@@ -1,13 +1,13 @@
 import './Margin.css';
 import { useEffect, useState, useMemo } from 'react';
 
-function Nav( {page, preview=false} ) {
+function Nav( {page, preview=false, demo=true} ) {
   const links = useMemo(() => [
     { hash: 'about', label: 'Présentation' },
     { hash: 'functionality', label: 'Fonctionnalités' },
     { hash: 'directskill', label: 'Compétences' },
     ...(preview ? [{ hash: 'preview', label: 'Aperçu' }] : []),
-    { hash: 'demo', label: 'Démo' },
+    ...(demo ? [{ hash: 'demo', label: 'Démo' }] : []),
     { hash: 'link', label: 'Liens' },
   ], [preview]);
 
