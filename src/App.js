@@ -18,6 +18,7 @@ import The_Plazza from './Routes/The-Plazza';
 import Zappy from './Routes/Zappy';
 import ProfilsActifs from './Routes/ProfilsActifs';
 import StartTrek from './Routes/StartTrek';
+import RType from './Routes/R-Type';
 
 import Header from './Routes/Margins/Header';
 import Footer from './Routes/Margins/Footer';
@@ -70,6 +71,7 @@ function App() {
       <Route path="/Zappy" element={<Page name={Zappy} />} />
       <Route path="/ProfilsActifs" element={<Page name={ProfilsActifs} />} />
       <Route path="/StartTrek" element={<Page name={StartTrek} />} />
+      <Route path="/R-Type" element={<Page name={RType} />} />
     </Routes>
   );
 }

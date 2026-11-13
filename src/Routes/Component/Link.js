@@ -70,6 +70,18 @@ function Andriamirado() {
     );
 }
 
-const Links = { Pierrick, Ariel, Loan, Philibert, Antoine, Maxime, Sacha, Armand, Natan, Sandes, Rayan, Andriamirado };
+function Lucas() {
+    return (
+        <a href="https://www.linkedin.com/in/lucas-sauvage7/" target='_blank' rel='noreferrer'>Lucas Sauvage</a>
+    );
+}
+
+function Aaron() {
+    return (
+        <a href="https://www.linkedin.com/in/aaron-joseph-28a059343/" target='_blank' rel='noreferrer'>Aaron Joseph</a>
+    );
+}
+
+const Links = { Pierrick, Ariel, Loan, Philibert, Antoine, Maxime, Sacha, Armand, Natan, Sandes, Rayan, Andriamirado, Aaron, Lucas };
 
 export default Links;

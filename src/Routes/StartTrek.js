@@ -42,7 +42,7 @@ function Body( {page} ) {
       <div className='Section' id="link">
         <h2>Liens</h2>
         <div className='Section_body'>
-          <p>Repo GitHub : <a href='https://github.com/ArielAMR/StarTtrek' target='_blank' rel='noreferrer'>{page}</a></p>
+          <p>Repo GitHub : <a href='https://github.com/ArielAMR/StartTrek' target='_blank' rel='noreferrer'>{page}</a></p>
           <div className='contributor'>
             Contributor :
             <Link.Ariel />
