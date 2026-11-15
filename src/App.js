@@ -21,6 +21,7 @@ import StartTrek from './Routes/StartTrek';
 import RType from './Routes/R-Type';
 import CVRIE from './Routes/CVRIE';
 import MyTorch from './Routes/MyTorch';
+import MyPGP from './Routes/MyPGP';
 
 import Header from './Routes/Margins/Header';
 import Footer from './Routes/Margins/Footer';
@@ -76,6 +77,7 @@ function App() {
       <Route path="/R-Type" element={<Page name={RType} />} />
       <Route path="/CVRIE" element={<Page name={CVRIE} />} />
       <Route path="/MyTorch" element={<Page name={MyTorch} />} />
+      <Route path="/MyPGP" element={<Page name={MyPGP} />} />
     </Routes>
   );
 }

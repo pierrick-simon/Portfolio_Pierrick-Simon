@@ -97,6 +97,7 @@ function Project() {
         <div className='Section_body_projects'>
           <ProjectCard name="R-Type" />
           <ProjectCard name="MyTorch" />
+          <ProjectCard name="MyPGP" />
           <ProjectCard name="ProfilsActifs" />
         </div>
       </div>
