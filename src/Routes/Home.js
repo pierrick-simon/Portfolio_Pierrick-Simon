@@ -108,6 +108,7 @@ function Project() {
           <ProjectCard name="NanoTekSpice" />
           <ProjectCard name="Cartridge" />
           <ProjectCard name="StartTrek" />
+          <ProjectCard name="CVRIE" />
           <ProjectCard name="Arcade" />
           <ProjectCard name="StoneAnalysis" />
           <ProjectCard name="The-Plazza" />
