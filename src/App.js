@@ -20,6 +20,7 @@ import ProfilsActifs from './Routes/ProfilsActifs';
 import StartTrek from './Routes/StartTrek';
 import RType from './Routes/R-Type';
 import CVRIE from './Routes/CVRIE';
+import MyTorch from './Routes/MyTorch';
 
 import Header from './Routes/Margins/Header';
 import Footer from './Routes/Margins/Footer';
@@ -74,6 +75,7 @@ function App() {
       <Route path="/StartTrek" element={<Page name={StartTrek} />} />
       <Route path="/R-Type" element={<Page name={RType} />} />
       <Route path="/CVRIE" element={<Page name={CVRIE} />} />
+      <Route path="/MyTorch" element={<Page name={MyTorch} />} />
     </Routes>
   );
 }

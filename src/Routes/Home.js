@@ -96,6 +96,7 @@ function Project() {
         <p className='group-label'>~/projets/tek3 · 2026-2027</p>
         <div className='Section_body_projects'>
           <ProjectCard name="R-Type" />
+          <ProjectCard name="MyTorch" />
           <ProjectCard name="ProfilsActifs" />
         </div>
       </div>
