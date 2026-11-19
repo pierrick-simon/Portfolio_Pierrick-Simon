@@ -1,85 +1,43 @@
 import { Routes, Route } from 'react-router-dom';
 import Home from './Routes/Home';
-import Wolf3D from './Routes/Wolf3D';
-import Shell from './Routes/Shell';
-import Corewar from './Routes/Corewar';
-import Amazed from './Routes/Amazed';
-import Cuddle from './Routes/Cuddle';
-import MyWorld from './Routes/MyWorld';
-import MyRadar from './Routes/MyRadar';
-import Watchlist from './Routes/Watchlist';
-import Meme_Application from './Routes/Meme_Application';
-import NanoTekSpice from './Routes/NanoTekSpice';
-import Arcade from './Routes/Arcade';
-import RayTracer from './Routes/RayTracer';
-import Cartridge from './Routes/Cartridge';
-import StoneAnalysis from './Routes/StoneAnalysis';
-import The_Plazza from './Routes/The-Plazza';
-import Zappy from './Routes/Zappy';
-import ProfilsActifs from './Routes/ProfilsActifs';
-import StartTrek from './Routes/StartTrek';
-import RType from './Routes/R-Type';
-import CVRIE from './Routes/CVRIE';
-import MyTorch from './Routes/MyTorch';
-import MyPGP from './Routes/MyPGP';
-
+import ProjectPage from './pages/ProjectPage';
+import NotFound from './pages/NotFound';
 import Header from './Routes/Margins/Header';
 import Footer from './Routes/Margins/Footer';
 import Top from './Routes/Margins/Top';
-import Nav  from './Routes/Margins/HomeNav';
-import React from 'react';
+import Nav from './Routes/Margins/HomeNav';
+import { profile } from './data/profile';
 
-function Page( {name} ) {
-  const Component = name;
+function Page({ children }) {
   return (
-    <React.StrictMode>
+    <>
       <Top />
-      <Component />
+      {children}
       <Footer />
-    </React.StrictMode>
+    </>
   );
 }
 
 function Main() {
-    return (
-        <React.StrictMode>
-          <Header Title={"Pierrick Simon"} SubTitle={"Développeur Fullstack | Étudiant à Epitech Paris"}/>
-          <Nav />
-          <Top />
-          <Home />
-          <Footer />
-        </React.StrictMode>
-      );
+  return (
+    <>
+      <Header Title={profile.header.title} SubTitle={profile.header.subtitle} />
+      <Nav />
+      <Top />
+      <Home />
+      <Footer />
+    </>
+  );
 }
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Main />} />
-      <Route path="/Wolf3D" element={<Page name={Wolf3D} />} />
-      <Route path="/42sh" element={<Page name={Shell} />} />
-      <Route path="/Corewar" element={<Page name={Corewar} />} />
-      <Route path="/Amazed" element={<Page name={Amazed} />} />
-      <Route path="/Cuddle" element={<Page name={Cuddle} />} />
-      <Route path="/MyWorld" element={<Page name={MyWorld} />} />
-      <Route path="/MyRadar" element={<Page name={MyRadar} />} />
-      <Route path="/Watchlist" element={<Page name={Watchlist} />} />
-      <Route path="/Meme_Application" element={<Page name={Meme_Application} />} />
-      <Route path="/NanoTekspice" element={<Page name={NanoTekSpice} />} />
-      <Route path="/Arcade" element={<Page name={Arcade} />} />
-      <Route path="/RayTracer" element={<Page name={RayTracer} />} />
-      <Route path="/Cartridge" element={<Page name={Cartridge} />} />
-      <Route path="/StoneAnalysis" element={<Page name={StoneAnalysis} />} />
-      <Route path="/The-Plazza" element={<Page name={The_Plazza} />} />
-      <Route path="/Zappy" element={<Page name={Zappy} />} />
-      <Route path="/ProfilsActifs" element={<Page name={ProfilsActifs} />} />
-      <Route path="/StartTrek" element={<Page name={StartTrek} />} />
-      <Route path="/R-Type" element={<Page name={RType} />} />
-      <Route path="/CVRIE" element={<Page name={CVRIE} />} />
-      <Route path="/MyTorch" element={<Page name={MyTorch} />} />
-      <Route path="/MyPGP" element={<Page name={MyPGP} />} />
+      <Route path="/:slug" element={<Page><ProjectPage /></Page>} />
+      <Route path="*" element={<Page><NotFound /></Page>} />
     </Routes>
   );
 }
-  
+
 export default App;
