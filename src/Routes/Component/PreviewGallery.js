@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import PreviewCard from './PreviewCard';
 
-// Thumbnails + a simple lightbox. Arrows loop infinitely through `names`.
-function PreviewGallery({ names }) {
+// Thumbnails + a simple lightbox. Arrows loop infinitely through `images`.
+function PreviewGallery({ images }) {
   const [current, setCurrent] = useState(null); // index of the open image, or null
-  const total = names.length;
+  const total = images.length;
 
   const close = () => setCurrent(null);
   const prev = (e) => {
@@ -18,8 +18,8 @@ function PreviewGallery({ names }) {
 
   return (
     <>
-      {names.map((name, index) => (
-        <PreviewCard key={name} name={name} onClick={() => setCurrent(index)} />
+      {images.map((image, index) => (
+        <PreviewCard key={image} image={image} onClick={() => setCurrent(index)} />
       ))}
 
       {current !== null && (
@@ -28,8 +28,8 @@ function PreviewGallery({ names }) {
           <button className="Lightbox_arrow Lightbox_arrow_left" onClick={prev} aria-label="Image précédente">‹</button>
           <img
             className="Lightbox_img"
-            src={`/${names[current]}.png`}
-            alt={`Img ${names[current]}`}
+            src={`/${images[current]}`}
+            alt={`Img ${images[current]}`}
             onClick={(e) => e.stopPropagation()}
           />
           <button className="Lightbox_arrow Lightbox_arrow_right" onClick={next} aria-label="Image suivante">›</button>
