@@ -6,6 +6,7 @@ import Header from './Routes/Margins/Header';
 import Footer from './Routes/Margins/Footer';
 import Top from './Routes/Margins/Top';
 import Nav from './Routes/Margins/HomeNav';
+import ScrollToTop from './Routes/Margins/ScrollToTop';
 import { profile } from './data/profile';
 
 function Page({ children }) {
@@ -32,11 +33,14 @@ function Main() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Main />} />
-      <Route path="/:slug" element={<Page><ProjectPage /></Page>} />
-      <Route path="*" element={<Page><NotFound /></Page>} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/:slug" element={<Page><ProjectPage /></Page>} />
+        <Route path="*" element={<Page><NotFound /></Page>} />
+      </Routes>
+    </>
   );
 }
 

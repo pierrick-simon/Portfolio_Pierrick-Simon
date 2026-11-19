@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 import { projects } from './data/projects';
@@ -41,4 +41,14 @@ test('old lowercase URL /NanoTekspice still works', () => {
 test('unknown slug shows the 404 page', () => {
   renderAt('/does-not-exist');
   expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('404');
+});
+
+test('opening a project from the home page scrolls to the top', () => {
+  const scrollTo = jest.fn();
+  window.scrollTo = scrollTo;
+  renderAt('/');
+  scrollTo.mockClear();
+  fireEvent.click(screen.getByRole('heading', { level: 4, name: 'MyPGP' }));
+  expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('MyPGP');
+  expect(scrollTo).toHaveBeenCalledWith(0, 0);
 });
