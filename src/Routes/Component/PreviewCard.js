@@ -1,8 +1,7 @@
 import  './Component.css';
 
-// `onClick` is optional: without it the card behaves exactly as before
-// (plain link to the image), so other pages using PreviewCard are unaffected.
-function PreviewCard({ name, onClick }) {
+// `onClick` is optional: without it the card is a plain link to the image.
+function PreviewCard({ image, onClick }) {
   const handleClick = (e) => {
     if (onClick) {
       e.preventDefault();
@@ -11,8 +10,8 @@ function PreviewCard({ name, onClick }) {
   };
 
   return (
-      <a href={`/${name}.png`} onClick={handleClick}>
-        <img src={`/${name}.png`} alt={`Img ${name}`} loading="lazy" decoding="async" />
+      <a href={`/${image}`} onClick={handleClick}>
+        <img src={`/${image}`} alt={`Img ${image}`} loading="lazy" decoding="async" />
       </a>
   );
 }

@@ -1,7 +1,8 @@
 import './Margin.css';
 import { useEffect, useState, useMemo } from 'react';
 
-function Nav( {page, preview=false, demo=true} ) {
+// Section links of a project page. `preview` and `demo` come from the project data.
+function Nav({ preview = false, demo = false }) {
   const links = useMemo(() => [
     { hash: 'about', label: 'Présentation' },
     { hash: 'functionality', label: 'Fonctionnalités' },
@@ -33,14 +34,14 @@ function Nav( {page, preview=false, demo=true} ) {
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, [page, links]);
+  }, [links]);
 
-    return (
+  return (
     <div className='Nav'>
       {links.map((link) => (
         <a
           key={link.hash}
-          href={`/${page}/#${link.hash}`}
+          href={`#${link.hash}`}
           className={active === link.hash ? 'Nav_active' : undefined}
         >
           {link.label}
