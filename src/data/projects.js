@@ -116,7 +116,7 @@ export const projects = [
     group: "perso",
     order: 2,
     cover: "Portfolio.png",
-    href: "#root",
+    href: "#top",
     published: true,
   },
   {

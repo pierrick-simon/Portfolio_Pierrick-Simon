@@ -84,6 +84,7 @@
   z-index: 1000;
   font-size: 1.3rem;
   font-family: var(--font-mono);
+  text-decoration: none;
   transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
