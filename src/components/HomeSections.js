@@ -1,10 +1,7 @@
-import './../App.css';
-import ProjectCard from './Component/ProjectCard';
-import { profile } from '../data/profile';
-import { projects } from '../data/projects';
-import { groups } from '../data/groups';
-import { experiences } from '../data/experiences';
-import { formations } from '../data/formations';
+// Sections of the home page. Each one receives its data as props
+// (loaded by src/app/page.js through src/lib/data.js).
+import ProjectCard from './ProjectCard';
+import { mediaUrl } from '@/lib/media';
 
 const icons = {
   mail: (
@@ -21,7 +18,7 @@ const icons = {
   ),
 };
 
-function About() {
+export function About({ profile }) {
   const { about, facts, skills } = profile;
   return (
     <div className='Section' id='about'>
@@ -67,7 +64,7 @@ function About() {
   );
 }
 
-function Project() {
+export function Projects({ groups }) {
   return (
     <div className='Section' id='project'>
       <h2>Mes Projets</h2>
@@ -76,10 +73,7 @@ function Project() {
         <div className='project-group' key={group.id}>
           <p className='group-label'>{group.label}</p>
           <div className='Section_body_projects'>
-            {projects
-              .filter((p) => p.group === group.id && p.published)
-              .sort((a, b) => a.order - b.order)
-              .map((p) => <ProjectCard key={p.slug} project={p} />)}
+            {group.projects.map((p) => <ProjectCard key={p.slug} project={p} />)}
           </div>
         </div>
       ))}
@@ -87,7 +81,7 @@ function Project() {
   );
 }
 
-function Timeline({ id, title, entries }) {
+export function Timeline({ id, title, entries }) {
   return (
     <div className='Section' id={id}>
       <h2>{title}</h2>
@@ -108,23 +102,23 @@ function Timeline({ id, title, entries }) {
   );
 }
 
-function Cv() {
+export function Cv({ file }) {
   return (
     <div className='Section' id='cv'>
       <h2>Mon CV</h2>
       <div className='Section_body'>
-        <a href={profile.cv} className="btn" download>Télécharger le CV</a>
+        <a href={mediaUrl(file)} className="btn" download>Télécharger le CV</a>
       </div>
     </div>
   );
 }
 
-function Contact() {
+export function Contact({ contact }) {
   return (
     <div className='Section' id='contact'>
       <h2>Contact</h2>
       <ul className='contact-list'>
-        {profile.contact.map((item) => (
+        {contact.map((item) => (
           <li key={item.icon + item.text}>
             {icons[item.icon]}
             {item.url ? (
@@ -143,18 +137,3 @@ function Contact() {
     </div>
   );
 }
-
-function Home() {
-  return (
-    <main>
-      <About />
-      <Project />
-      <Timeline id='formation' title='Mes Formations' entries={formations} />
-      <Timeline id='experience' title='Mes Experiences' entries={experiences} />
-      <Cv />
-      <Contact />
-    </main>
-  );
-}
-
-export default Home;

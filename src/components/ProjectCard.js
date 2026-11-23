@@ -1,0 +1,18 @@
+import Link from 'next/link';
+import { mediaUrl } from '@/lib/media';
+
+// Card on the home page. A project with an `href` (e.g. "#top") links there
+// instead of to its own page.
+function ProjectCard({ project }) {
+  const content = (
+    <>
+      <img src={mediaUrl(project.cover)} alt={`Aperçu du Projet ${project.title}`} />
+      <h4>{project.title}</h4>
+    </>
+  );
+
+  if (project.href) return <a href={project.href}>{content}</a>;
+  return <Link href={`/${project.slug}`}>{content}</Link>;
+}
+
+export default ProjectCard;

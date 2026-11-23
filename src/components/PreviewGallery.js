@@ -1,5 +1,8 @@
+'use client';
+
 import { useState } from 'react';
 import PreviewCard from './PreviewCard';
+import { mediaUrl } from '@/lib/media';
 
 // Thumbnails + a simple lightbox. Arrows loop infinitely through `images`.
 function PreviewGallery({ images }) {
@@ -28,7 +31,7 @@ function PreviewGallery({ images }) {
           <button className="Lightbox_arrow Lightbox_arrow_left" onClick={prev} aria-label="Image précédente">‹</button>
           <img
             className="Lightbox_img"
-            src={`/${images[current]}`}
+            src={mediaUrl(images[current])}
             alt={`Img ${images[current]}`}
             onClick={(e) => e.stopPropagation()}
           />

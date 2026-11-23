@@ -1,10 +1,10 @@
-import './Margin.css';
+import Link from 'next/link';
 
 function Footer() {
   return (
     <footer className="Footer">
-      <br></br>
-      <a href='/'>Home</a>
+      <br />
+      <Link href='/'>Home</Link>
       <p>&copy; Pierrick Simon - Portfolio</p>
     </footer>
   );
