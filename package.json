@@ -12,7 +12,8 @@
     "lint": "eslint .",
     "test": "vitest run",
     "db:seed": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --env-file=.env.local scripts/seed.mjs",
-    "db:check": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --env-file=.env.local scripts/check-db.mjs"
+    "db:check": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --env-file=.env.local scripts/check-db.mjs",
+    "test:db": "node --env-file=.env.local node_modules/vitest/vitest.mjs run src/__tests__/data.supabase.test.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.119.2",
