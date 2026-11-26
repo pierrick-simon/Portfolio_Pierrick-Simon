@@ -146,7 +146,10 @@ begin
 end $$;
 
 -- Table privileges for the API roles (RLS above still decides which rows).
-grant usage on schema public to anon, authenticated;
+-- Newer Supabase projects don't grant them automatically on new tables.
+grant usage on schema public to anon, authenticated, service_role;
+-- service_role = the secret key (seed script, server code). It bypasses RLS.
+grant all on all tables in schema public to service_role;
 grant select on public.people, public.project_groups, public.projects, public.project_contributors,
                 public.experiences, public.formations, public.settings to anon, authenticated;
 grant insert, update, delete on public.people, public.project_groups, public.projects,
