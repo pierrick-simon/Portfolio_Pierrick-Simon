@@ -2,6 +2,7 @@
 
 import { useActionState } from 'react';
 import ListEditor from '@/components/admin/ListEditor';
+import MediaInput from '@/components/admin/MediaInput';
 import { FormError } from '@/components/admin/FormMessages';
 import { SubmitButton } from '@/components/admin/Buttons';
 import { saveSetting } from './actions';
@@ -78,11 +79,11 @@ function ProfileForms({ profile }) {
       </SettingForm>
 
       <SettingForm settingKey='cv' title='CV'>
-        <label>
-          Fichier
-          <input name='cv' defaultValue={cv} required />
-          <span className='admin-hint'>Nom du fichier dans public/ ou URL. L’upload arrive en Phase 7.</span>
-        </label>
+        <div className='admin-field'>
+          <span>Fichier PDF *</span>
+          <MediaInput name='cv' kind='document' scope='cv' defaultValue={cv} label='Fichier du CV' />
+          <span className='admin-hint'>« Envoyer… » remplace le CV ; l’ancien fichier est supprimé du bucket à l’enregistrement.</span>
+        </div>
       </SettingForm>
 
       <SettingForm settingKey='contact' title='Contact'>

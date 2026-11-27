@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useId, useState } from 'react';
+import MediaInput from './MediaInput';
+import { acceptFor, uploadFile } from './uploadFile';
 
 // Editable list with add, remove and ↑/↓ reorder. The rows are sent as JSON
 // in a hidden input called `name` (read on the server with json()).
@@ -10,13 +12,32 @@ import { useState } from 'react';
 //   fields={[{ key: 'label', label: 'Libellé' }, { key: 'url', label: 'URL', type: 'url' }]}
 // A field with `options` renders a <select>; for plain rows, pass `options`
 // to the editor itself (e.g. picking contributors among people).
-function ListEditor({ name, initial = [], fields, options, addLabel = 'Ajouter', placeholder, multiline = false }) {
+// With `media` ({ kind, scope }), each plain row is a media field and several
+// files can be uploaded at once, one new row each (the project gallery).
+function ListEditor({ name, initial = [], fields, options, addLabel = 'Ajouter', placeholder, multiline = false, media }) {
   // Each row gets a stable id so React keeps inputs in place when rows move.
   const [rows, setRows] = useState(() => initial.map((value, id) => ({ id, value })));
-  const [nextId, setNextId] = useState(initial.length);
-  const add = () => {
-    setRows((list) => [...list, { id: nextId, value: empty() }]);
-    setNextId((n) => n + 1);
+  // Random ids for new rows: uploads finish later and must not reuse an id.
+  const add = (values = [empty()]) => {
+    setRows((list) => [...list, ...values.map((value) => ({ id: crypto.randomUUID(), value }))]);
+  };
+
+  const filesId = useId();
+  const [uploading, setUploading] = useState(null); // "2 / 5" while sending, or an error
+  const uploadMany = async (e) => {
+    const files = [...(e.target.files ?? [])];
+    e.target.value = '';
+    const keys = [];
+    try {
+      for (const [i, file] of files.entries()) {
+        setUploading(`Envoi ${i + 1} / ${files.length}…`);
+        keys.push(await uploadFile(file, media.kind, media.scope));
+      }
+      setUploading(null);
+    } catch (err) {
+      setUploading(`${keys.length} / ${files.length} envoyé(s). ${err.message}`);
+    }
+    if (keys.length) add(keys);
   };
 
   const empty = () => (fields
@@ -43,6 +64,9 @@ function ListEditor({ name, initial = [], fields, options, addLabel = 'Ajouter',
           {choices.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
         </select>
       );
+    }
+    if (media && !fields) {
+      return <MediaInput key='value' kind={media.kind} scope={media.scope} value={value} onChange={(v) => update(row.id, v)} label={label} placeholder={placeholder} />;
     }
     const Tag = (f?.multiline ?? multiline) ? 'textarea' : 'input';
     return (
@@ -71,9 +95,18 @@ function ListEditor({ name, initial = [], fields, options, addLabel = 'Ajouter',
           </div>
         </div>
       ))}
-      <button type='button' className='btn btn-secondary btn-small' onClick={add}>
-        + {addLabel}
-      </button>
+      <div className='admin-actions'>
+        <button type='button' className='btn btn-secondary btn-small' onClick={() => add()}>
+          + {addLabel}
+        </button>
+        {media && (
+          <>
+            <label htmlFor={filesId} className='btn btn-secondary btn-small'>Envoyer des fichiers…</label>
+            <input id={filesId} type='file' multiple accept={acceptFor(media.kind)} onChange={uploadMany} hidden />
+          </>
+        )}
+        {uploading && <span className='admin-hint'>{uploading}</span>}
+      </div>
     </div>
   );
 }

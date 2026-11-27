@@ -5,6 +5,7 @@ import Link from 'next/link';
 import ListEditor from '@/components/admin/ListEditor';
 import { FieldError, FormError } from '@/components/admin/FormMessages';
 import PeriodField from '@/components/admin/PeriodField';
+import MediaInput from '@/components/admin/MediaInput';
 import { ConfirmButton, SubmitButton } from '@/components/admin/Buttons';
 import { slugify } from '@/lib/admin/form';
 import { deleteProject, saveProject } from './actions';
@@ -111,20 +112,21 @@ function ProjectForm({ project, groups, people, docsText }) {
 
       <fieldset>
         <legend>Médias</legend>
-        <p className='admin-hint'>Nom de fichier dans public/ (ex. MyPGP.png) ou URL complète. L’upload arrive en Phase 7.</p>
-        <div className='admin-grid'>
-          <label>
-            Image de couverture
-            <input name='cover_url' defaultValue={v.cover_url} placeholder='MyPGP.png' />
-          </label>
-          <label>
-            Vidéo de démo
-            <input name='video_url' defaultValue={v.video_url} placeholder='MyPGP.mp4' />
-          </label>
+        <p className='admin-hint'>
+          « Envoyer… » met le fichier sur R2 (images converties en WebP). Tu peux aussi coller une URL.
+          Les fichiers retirés sont supprimés du bucket à l’enregistrement.
+        </p>
+        <div className='admin-field'>
+          <span>Image de couverture</span>
+          <MediaInput name='cover_url' kind='image' scope={slug} defaultValue={v.cover_url} label='Image de couverture' placeholder='image/MyPGP/cover.webp' />
+        </div>
+        <div className='admin-field'>
+          <span>Vidéo de démo (MP4, 100 Mo max)</span>
+          <MediaInput name='video_url' kind='video' scope={slug} defaultValue={v.video_url} label='Vidéo de démo' placeholder='video/MyPGP/demo.mp4' />
         </div>
         <div>
           <span className='admin-hint'>Galerie (section Aperçu)</span>
-          <ListEditor name='gallery' initial={project?.gallery ?? []} addLabel='Image' placeholder='MyPGP-step1.png' />
+          <ListEditor name='gallery' initial={project?.gallery ?? []} addLabel='Image' placeholder='Image' media={{ kind: 'image', scope: slug }} />
         </div>
       </fieldset>
 
