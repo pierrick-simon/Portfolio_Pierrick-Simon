@@ -39,7 +39,7 @@ export default async function TimelineAdmin({ table, title }) {
           </li>
         ))}
       </ul>
-      <h3>Ajouter</h3>
+      <h3 id='ajouter'>Ajouter</h3>
       {/* key: a fresh empty form after each creation */}
       <RecordForm key={entries.length} action={saveTimelineEntry.bind(null, table, null)} fields={FIELDS} submitLabel='Ajouter' />
     </div>
