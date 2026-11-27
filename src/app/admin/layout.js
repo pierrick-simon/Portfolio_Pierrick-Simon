@@ -1,6 +1,8 @@
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import Header from '@/components/Header';
+import Toast from '@/components/admin/Toast';
 import { getAdmin } from '@/lib/supabase/server';
 import { logout } from '../login/actions';
 import '@/styles/Admin.css';
@@ -22,13 +24,22 @@ export default async function AdminLayout({ children }) {
       <div className='admin-bar'>
         <nav>
           <Link href='/admin'>Tableau de bord</Link>
-          <Link href='/'>Voir le site</Link>
+          <Link href='/admin/projects'>Projets</Link>
+          <Link href='/admin/experiences'>Expériences</Link>
+          <Link href='/admin/formations'>Formations</Link>
+          <Link href='/admin/profile'>Profil</Link>
+          <Link href='/admin/people'>Contributeurs</Link>
+          <Link href='/admin/groups'>Groupes</Link>
+          <Link href='/' target='_blank'>Voir le site ↗</Link>
         </nav>
         <form action={logout}>
           <button type='submit' className='btn btn-secondary'>Se déconnecter</button>
         </form>
       </div>
       <main>{children}</main>
+      <Suspense>
+        <Toast />
+      </Suspense>
     </>
   );
 }

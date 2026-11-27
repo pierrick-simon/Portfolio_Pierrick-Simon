@@ -8,8 +8,9 @@ import { useState } from 'react';
 // Without `fields`, each row is a plain string.
 // With `fields`, each row is an object, e.g.
 //   fields={[{ key: 'label', label: 'Libellé' }, { key: 'url', label: 'URL', type: 'url' }]}
-// A field with `options` renders a <select>.
-function ListEditor({ name, initial = [], fields, addLabel = 'Ajouter', placeholder, multiline = false }) {
+// A field with `options` renders a <select>; for plain rows, pass `options`
+// to the editor itself (e.g. picking contributors among people).
+function ListEditor({ name, initial = [], fields, options, addLabel = 'Ajouter', placeholder, multiline = false }) {
   // Each row gets a stable id so React keeps inputs in place when rows move.
   const [rows, setRows] = useState(() => initial.map((value, id) => ({ id, value })));
   const [nextId, setNextId] = useState(initial.length);
@@ -18,7 +19,9 @@ function ListEditor({ name, initial = [], fields, addLabel = 'Ajouter', placehol
     setNextId((n) => n + 1);
   };
 
-  const empty = () => (fields ? Object.fromEntries(fields.map((f) => [f.key, f.options?.[0]?.value ?? ''])) : '');
+  const empty = () => (fields
+    ? Object.fromEntries(fields.map((f) => [f.key, f.options?.[0]?.value ?? '']))
+    : options?.[0]?.value ?? '');
   const update = (id, value) => setRows((list) => list.map((r) => (r.id === id ? { ...r, value } : r)));
   const remove = (id) => setRows((list) => list.filter((r) => r.id !== id));
   const shift = (index, direction) => setRows((list) => {
@@ -33,10 +36,11 @@ function ListEditor({ name, initial = [], fields, addLabel = 'Ajouter', placehol
     const value = fields ? row.value[f.key] ?? '' : row.value;
     const onChange = (e) => update(row.id, fields ? { ...row.value, [f.key]: e.target.value } : e.target.value);
     const label = f?.label ?? placeholder ?? 'Élément';
-    if (f?.options) {
+    const choices = fields ? f.options : options;
+    if (choices) {
       return (
-        <select key={f.key} value={value} onChange={onChange} aria-label={label}>
-          {f.options.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
+        <select key={f?.key ?? 'value'} value={value} onChange={onChange} aria-label={label}>
+          {choices.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
         </select>
       );
     }
