@@ -1,11 +1,10 @@
 import { getAdmin } from '@/lib/supabase/server';
 import RecordForm from '@/components/admin/RecordForm';
 import MoveButtons from '@/components/admin/MoveButtons';
-import { ConfirmButton } from '@/components/admin/Buttons';
 import { deleteTimelineEntry, moveTimelineEntry, saveTimelineEntry } from './records';
 
 const FIELDS = [
-  { name: 'period', label: 'Période', placeholder: 'fév. 2026 - mars 2027', required: true },
+  { name: 'period', label: 'Période', type: 'period', required: true },
   { name: 'title', label: 'Titre', placeholder: 'Epitech - Assistant Pédagogique', required: true },
   { name: 'bullets', label: 'Points (optionnels)', type: 'list', addLabel: 'Point', placeholder: 'Détail' },
 ];
@@ -29,10 +28,13 @@ export default async function TimelineAdmin({ table, title }) {
             <MoveButtons action={moveTimelineEntry.bind(null, table, entry.id)} first={i === 0} last={i === entries.length - 1} />
             <details>
               <summary>Modifier</summary>
-              <RecordForm action={saveTimelineEntry.bind(null, table, entry.id)} fields={FIELDS} values={entry} />
-              <form action={deleteTimelineEntry.bind(null, table, entry.id)}>
-                <ConfirmButton message={`Supprimer « ${entry.title} » ?`} />
-              </form>
+              <RecordForm
+                action={saveTimelineEntry.bind(null, table, entry.id)}
+                fields={FIELDS}
+                values={entry}
+                onDelete={deleteTimelineEntry.bind(null, table, entry.id)}
+                deleteMessage={`Supprimer « ${entry.title} » ?`}
+              />
             </details>
           </li>
         ))}

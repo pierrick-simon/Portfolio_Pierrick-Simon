@@ -2,10 +2,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAdmin } from '@/lib/supabase/server';
 import { formatDocs } from '@/lib/admin/form';
-import { ConfirmButton } from '@/components/admin/Buttons';
 import ProjectForm from '../ProjectForm';
 import { formOptions } from '../options';
-import { deleteProject } from '../actions';
 
 export const metadata = { title: 'Modifier le projet' };
 
@@ -35,10 +33,6 @@ export default async function EditProjectPage({ params }) {
         )}
       </div>
       <ProjectForm project={project} groups={groups} people={people} docsText={formatDocs(project.docs)} />
-      <hr />
-      <form action={deleteProject.bind(null, project.id)}>
-        <ConfirmButton message={`Supprimer définitivement « ${project.title} » ?`}>Supprimer le projet</ConfirmButton>
-      </form>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import { getAdmin } from '@/lib/supabase/server';
 import RecordForm from '@/components/admin/RecordForm';
-import { ConfirmButton } from '@/components/admin/Buttons';
 import { deletePerson, savePerson } from '../records';
 
 export const metadata = { title: 'Contributeurs' };
@@ -34,10 +33,13 @@ export default async function PeoplePage() {
               </span>
               <details>
                 <summary>Modifier</summary>
-                <RecordForm action={savePerson.bind(null, person.id)} fields={fields(true)} values={person} />
-                <form action={deletePerson.bind(null, person.id)}>
-                  <ConfirmButton message={`Supprimer ${person.name} ? Il sera aussi retiré de ${projects} projet(s).`} />
-                </form>
+                <RecordForm
+                  action={savePerson.bind(null, person.id)}
+                  fields={fields(true)}
+                  values={person}
+                  onDelete={deletePerson.bind(null, person.id)}
+                  deleteMessage={`Supprimer ${person.name} ? Il sera aussi retiré de ${projects} projet(s).`}
+                />
               </details>
             </li>
           );

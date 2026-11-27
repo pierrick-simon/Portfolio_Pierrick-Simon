@@ -1,7 +1,6 @@
 import { getAdmin } from '@/lib/supabase/server';
 import RecordForm from '@/components/admin/RecordForm';
 import MoveButtons from '@/components/admin/MoveButtons';
-import { ConfirmButton } from '@/components/admin/Buttons';
 import { deleteGroup, moveGroup, saveGroup } from '../records';
 
 export const metadata = { title: 'Groupes' };
@@ -36,12 +35,13 @@ export default async function GroupsPage() {
               <MoveButtons action={moveGroup.bind(null, group.id)} first={i === 0} last={i === groups.length - 1} />
               <details>
                 <summary>Modifier</summary>
-                <RecordForm action={saveGroup.bind(null, group.id)} fields={fields(true)} values={group} />
-                <form action={deleteGroup.bind(null, group.id)}>
-                  <ConfirmButton
-                    message={`Supprimer le groupe « ${group.label} » ? Ses ${projects} projet(s) seront conservés mais masqués de l’accueil jusqu’à ce que tu leur choisisses un autre groupe.`}
-                  />
-                </form>
+                <RecordForm
+                  action={saveGroup.bind(null, group.id)}
+                  fields={fields(true)}
+                  values={group}
+                  onDelete={deleteGroup.bind(null, group.id)}
+                  deleteMessage={`Supprimer le groupe « ${group.label} » ? Ses ${projects} projet(s) seront conservés mais masqués de l’accueil jusqu’à ce que tu leur choisisses un autre groupe.`}
+                />
               </details>
             </li>
           );

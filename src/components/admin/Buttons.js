@@ -22,6 +22,7 @@ export function ConfirmButton({ message, children = 'Supprimer', className = 'bt
       className={className}
       disabled={pending}
       formAction={formAction}
+      formNoValidate // deleting shouldn't require the form's fields to be valid
       onClick={(e) => { if (!window.confirm(message)) e.preventDefault(); }}
     >
       {children}

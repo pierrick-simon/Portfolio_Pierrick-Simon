@@ -4,9 +4,10 @@ import { useActionState, useState } from 'react';
 import Link from 'next/link';
 import ListEditor from '@/components/admin/ListEditor';
 import { FieldError, FormError } from '@/components/admin/FormMessages';
-import { SubmitButton } from '@/components/admin/Buttons';
+import PeriodField from '@/components/admin/PeriodField';
+import { ConfirmButton, SubmitButton } from '@/components/admin/Buttons';
 import { slugify } from '@/lib/admin/form';
-import { saveProject } from './actions';
+import { deleteProject, saveProject } from './actions';
 
 // Create or edit a project. `project` is the database row (null = new).
 function ProjectForm({ project, groups, people, docsText }) {
@@ -76,10 +77,6 @@ function ProjectForm({ project, groups, people, docsText }) {
             <input name='duration' defaultValue={v.duration} placeholder='4 semaines' />
           </label>
           <label>
-            Période
-            <input name='period' defaultValue={v.period} placeholder='sep. 2026 - oct. 2026' />
-          </label>
-          <label>
             Technologies
             <input name='stack' defaultValue={v.stack} placeholder='C++, Python' />
             <span className='admin-hint'>Séparées par des virgules.</span>
@@ -89,6 +86,7 @@ function ProjectForm({ project, groups, people, docsText }) {
             <input name='note' defaultValue={v.note} placeholder=' - (généré avec GitHub Copilot)' />
           </label>
         </div>
+        <PeriodField defaultValue={v.period} error={err('period')} />
         <label className='admin-check'>
           <input type='checkbox' name='published' defaultChecked={v.published} />
           Publié (visible sur le site)
@@ -179,6 +177,15 @@ function ProjectForm({ project, groups, people, docsText }) {
       <div className='admin-actions'>
         <SubmitButton>{project ? 'Enregistrer' : 'Créer le projet'}</SubmitButton>
         <Link href='/admin/projects'>Annuler</Link>
+        {project && (
+          <ConfirmButton
+            className='btn btn-danger admin-actions-end'
+            formAction={deleteProject.bind(null, project.id)}
+            message={`Supprimer définitivement « ${project.title} » ?`}
+          >
+            Supprimer le projet
+          </ConfirmButton>
+        )}
       </div>
     </form>
   );
