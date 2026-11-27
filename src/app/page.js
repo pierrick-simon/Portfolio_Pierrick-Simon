@@ -3,6 +3,10 @@ import SectionNav from '@/components/SectionNav';
 import { About, Projects, Timeline, Cv, Contact } from '@/components/HomeSections';
 import { getProfile, getProjectGroups, getExperiences, getFormations } from '@/lib/data';
 
+// Pages are pre-rendered, then refreshed from Supabase at most once an hour.
+// (Phase 6: the admin will also refresh them right after each save.)
+export const revalidate = 3600;
+
 const links = [
   { hash: 'about', label: 'À propos' },
   { hash: 'project', label: 'Projets' },

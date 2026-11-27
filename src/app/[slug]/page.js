@@ -8,7 +8,12 @@ import { List, Docs, Links } from '@/components/ProjectSections';
 import { getProject, getProjectSlugs } from '@/lib/data';
 import { mediaUrl } from '@/lib/media';
 
-// Pre-render every known project at build time.
+// Pages are pre-rendered, then refreshed from Supabase at most once an hour.
+// (Phase 6: the admin will also refresh them right after each save.)
+export const revalidate = 3600;
+
+// Pre-render every published project at build time. A project added later
+// in the database is rendered on its first visit (dynamicParams is on by default).
 export async function generateStaticParams() {
   return (await getProjectSlugs()).map((slug) => ({ slug }));
 }

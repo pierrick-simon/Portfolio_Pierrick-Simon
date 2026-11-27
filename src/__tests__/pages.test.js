@@ -1,9 +1,12 @@
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import HomePage from '@/app/page';
 import ProjectPage, { generateMetadata, generateStaticParams } from '@/app/[slug]/page';
 import { getProject } from '@/lib/data';
 import { projects } from '@/data/projects';
+
+// Render the pages from src/data/ so these tests don't need the network.
+vi.mock('@/lib/data', () => import('./localData'));
 
 // Server components are async functions: await them, then render their output.
 const renderProject = async (slug) => render(await ProjectPage({ params: Promise.resolve({ slug }) }));
