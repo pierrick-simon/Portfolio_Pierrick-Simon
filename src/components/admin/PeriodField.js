@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { formatPeriod, parsePeriod } from '@/lib/admin/period';
+import MonthPicker from './MonthPicker';
 
 // Start and end pickers that send the period as text in a hidden input `name`.
 function PeriodField({ name = 'period', label = 'Période', defaultValue = '', required = false, error }) {
@@ -13,7 +14,7 @@ function PeriodField({ name = 'period', label = 'Période', defaultValue = '', r
   // Text that couldn't be read is kept until a picker is used.
   const [legacy, setLegacy] = useState(parsed ? null : defaultValue);
 
-  const touch = (fn) => (e) => { setLegacy(null); fn(e); };
+  const touch = (fn) => (arg) => { setLegacy(null); fn(arg); };
   const value = legacy ?? formatPeriod({ start, end, ongoing });
 
   // Switching precision keeps the year: "2026-02" ↔ "2026".
@@ -27,28 +28,26 @@ function PeriodField({ name = 'period', label = 'Période', defaultValue = '', r
     setEnd(convert(end));
   });
 
-  const picker = (props) => (yearsOnly
-    ? <input type='number' min='1990' max='2100' step='1' placeholder='2026' {...props} />
-    : <input type='month' {...props} />);
-
   return (
     <fieldset className='period-field'>
       <legend>{label}{required ? ' *' : ''}</legend>
       <input type='hidden' name={name} value={value} />
       <div className='period-pickers'>
-        <label>
-          Début
-          {picker({ value: start, required: required && !legacy, onChange: touch((e) => setStart(e.target.value)) })}
-        </label>
-        <label>
-          Fin
-          {picker({
-            value: ongoing ? '' : end,
-            min: start || undefined,
-            disabled: ongoing,
-            onChange: touch((e) => setEnd(e.target.value)),
-          })}
-        </label>
+        <div className='period-picker'>
+          <span>Début</span>
+          <MonthPicker value={start} yearsOnly={yearsOnly} onChange={touch((v) => { setStart(v); if (end && v > end) setEnd(''); })} />
+        </div>
+        <div className='period-picker'>
+          <span>Fin</span>
+          <MonthPicker
+            value={ongoing ? '' : end}
+            yearsOnly={yearsOnly}
+            min={start}
+            disabled={ongoing}
+            placeholder={ongoing ? "aujourd'hui" : 'Choisir…'}
+            onChange={touch(setEnd)}
+          />
+        </div>
       </div>
       <div className='period-options'>
         <label className='admin-check'>

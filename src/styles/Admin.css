@@ -252,9 +252,95 @@ button.btn:disabled {
 
 .period-pickers > * { min-width: 0; }
 
-/* Dark calendar popup and icon in Chrome. */
-.period-field input { color-scheme: dark; }
-.period-field input:disabled { opacity: 0.45; }
+.period-picker {
+  display: grid;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.month-picker { position: relative; }
+
+.month-picker-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.month-picker-toggle:hover:not(:disabled),
+.month-picker-toggle[aria-expanded='true'] { border-color: var(--accent); }
+.month-picker-toggle:disabled { opacity: 0.45; cursor: default; }
+.month-picker-empty { color: var(--text-dim); }
+
+.month-picker-toggle svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: none;
+  fill: none;
+  stroke: var(--accent-2);
+  stroke-width: 1.8;
+}
+
+.month-picker-pop {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 0;
+  z-index: 50;
+  width: min(280px, 100%);
+  min-width: 240px;
+  box-sizing: border-box;
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  padding: 0.6rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.month-picker-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  color: var(--text);
+}
+
+.month-picker-pop button {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 0.45rem 0;
+  cursor: pointer;
+}
+
+.month-picker-head button { width: 2rem; font-size: 1.2rem; padding: 0.1rem 0; }
+
+.month-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem;
+}
+
+.month-picker-pop button:hover:not(:disabled) { border-color: var(--accent); }
+.month-picker-pop button:disabled { opacity: 0.3; cursor: default; }
+.month-picker-pop button[aria-pressed='true'] { background: var(--accent); color: var(--bg); font-weight: 600; }
+.month-picker-clear { color: var(--text-dim) !important; font-size: 0.8rem !important; }
 
 .period-options { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
