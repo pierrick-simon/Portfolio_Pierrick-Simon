@@ -69,12 +69,17 @@ export async function getProjectSlugs() {
 
 // Case-insensitive, so old URLs like /NanoTekspice still resolve.
 export async function getProject(slug = '') {
+  return fetchProject(publicClient(), slug, { drafts: false });
+}
+
+// Shared with the admin preview, which passes its own client and drafts: true.
+export async function fetchProject(db, slug = '', { drafts = false } = {}) {
   const wanted = decodeURIComponent(slug);
   // ilike is case-insensitive; escape its wildcards (_ and %) to match the slug literally.
   const pattern = wanted.replace(/[\\%_]/g, (c) => `\\${c}`);
-  const rows = await query('project', publicClient()
-    .from('projects').select(PROJECT_COLUMNS)
-    .ilike('slug', pattern).eq('published', true).is('href', null).limit(2));
+  let request = db.from('projects').select(PROJECT_COLUMNS).ilike('slug', pattern).is('href', null).limit(2);
+  if (!drafts) request = request.eq('published', true);
+  const rows = await query('project', request);
   const row = rows.find((r) => r.slug === wanted) ?? rows[0];
   return row ? toProject(row) : null;
 }

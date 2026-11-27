@@ -1,6 +1,8 @@
-import Link from 'next/link';
+import { Suspense } from 'react';
 import { redirect } from 'next/navigation';
 import Header from '@/components/Header';
+import Toast from '@/components/admin/Toast';
+import AdminNav from '@/components/admin/AdminNav';
 import { getAdmin } from '@/lib/supabase/server';
 import { logout } from '../login/actions';
 import '@/styles/Admin.css';
@@ -19,16 +21,16 @@ export default async function AdminLayout({ children }) {
   return (
     <>
       <Header title='Admin' subtitle={user.email} />
-      <div className='admin-bar'>
-        <nav>
-          <Link href='/admin'>Tableau de bord</Link>
-          <Link href='/'>Voir le site</Link>
-        </nav>
+      <div className='admin-toolbar'>
+        <AdminNav />
         <form action={logout}>
-          <button type='submit' className='btn btn-secondary'>Se déconnecter</button>
+          <button type='submit' className='admin-toolbar-logout'>Se déconnecter</button>
         </form>
       </div>
       <main>{children}</main>
+      <Suspense>
+        <Toast />
+      </Suspense>
     </>
   );
 }

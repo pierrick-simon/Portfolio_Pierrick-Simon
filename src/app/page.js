@@ -4,7 +4,7 @@ import { About, Projects, Timeline, Cv, Contact } from '@/components/HomeSection
 import { getProfile, getProjectGroups, getExperiences, getFormations } from '@/lib/data';
 
 // Pages are pre-rendered, then refreshed from Supabase at most once an hour.
-// (Phase 6: the admin will also refresh them right after each save.)
+// Admin saves also refresh them immediately (refreshSite() in lib/admin/write.js).
 export const revalidate = 3600;
 
 const links = [
