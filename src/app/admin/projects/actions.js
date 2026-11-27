@@ -4,7 +4,8 @@ import { redirect } from 'next/navigation';
 import { requireAdmin } from '@/lib/admin/auth';
 import { checkbox, commaList, field, json, parseDocs } from '@/lib/admin/form';
 import { formErrors, projectSchema } from '@/lib/admin/schemas';
-import { check, move, nextPosition, refreshSite } from '@/lib/admin/write';
+import { check, deleteRemovedMedia, move, nextPosition, refreshSite } from '@/lib/admin/write';
+import { projectMedia } from '@/lib/admin/upload';
 
 // Raw form values, sent back on error so the form keeps what was typed.
 function readForm(formData) {
@@ -45,9 +46,11 @@ export async function saveProject(id, _previousState, formData) {
   const { contributors, ...project } = parsed.data;
 
   let projectId = id;
+  let previousMedia = [];
   try {
     if (id) {
-      const current = await check('projects', supabase.from('projects').select('group_id').eq('id', id).single());
+      const current = await check('projects', supabase.from('projects').select('group_id, cover_url, video_url, gallery').eq('id', id).single());
+      previousMedia = projectMedia(current);
       if (current.group_id !== project.group_id) {
         project.position = await nextPosition(supabase, 'projects', { column: 'group_id', value: project.group_id });
       }
@@ -71,13 +74,16 @@ export async function saveProject(id, _previousState, formData) {
     return { error: `Erreur lors de l’enregistrement : ${error.message}`, values };
   }
 
+  await deleteRemovedMedia(previousMedia, projectMedia(project));
   refreshSite();
   redirect(`/admin/projects?toast=${id ? 'saved' : 'created'}`);
 }
 
 export async function deleteProject(id) {
   const supabase = await requireAdmin();
+  const project = await check('projects', supabase.from('projects').select('cover_url, video_url, gallery').eq('id', id).single());
   await check('projects', supabase.from('projects').delete().eq('id', id));
+  await deleteRemovedMedia(projectMedia(project));
   refreshSite();
   redirect('/admin/projects?toast=deleted');
 }

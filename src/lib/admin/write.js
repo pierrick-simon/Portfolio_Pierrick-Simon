@@ -1,4 +1,6 @@
 import 'server-only';
+import { removedKeys } from './upload';
+import { deleteKeys } from '@/lib/r2';
 import { revalidatePath } from 'next/cache';
 
 // After any change: refresh every public page (home, project pages, sitemap)
@@ -38,4 +40,15 @@ export async function nextPosition(supabase, table, scope) {
   if (scope) query = scope.value == null ? query.is(scope.column, null) : query.eq(scope.column, scope.value);
   const rows = await check(table, query);
   return rows.length ? rows[0].position + 1 : 0;
+}
+
+// Deletes uploaded R2 files that `before` used and `after` no longer does.
+// A failure only leaves an unused file in the bucket, so it never blocks a save.
+export async function deleteRemovedMedia(before, after = []) {
+  const keys = removedKeys(before, after);
+  try {
+    await deleteKeys(keys);
+  } catch (error) {
+    console.error(`R2: could not delete ${keys.join(', ')}: ${error.message}`);
+  }
 }
