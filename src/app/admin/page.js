@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getAdmin } from '@/lib/supabase/server';
 
 // Counts read as the admin, so RLS also includes draft projects.
@@ -18,26 +19,27 @@ export default async function AdminPage() {
   ]);
 
   const stats = [
-    ['Projets', projects],
-    ['Brouillons', drafts],
-    ['Expériences', experiences],
-    ['Formations', formations],
-    ['Contributeurs', people],
+    ['Projets', projects, '/admin/projects'],
+    ['Brouillons', drafts, '/admin/projects'],
+    ['Expériences', experiences, '/admin/experiences'],
+    ['Formations', formations, '/admin/formations'],
+    ['Contributeurs', people, '/admin/people'],
   ];
 
   return (
     <div className='Section'>
       <h2>Tableau de bord</h2>
       <dl className='admin-stats'>
-        {stats.map(([label, value]) => (
+        {stats.map(([label, value, href]) => (
           <div key={label}>
-            <dt>{label}</dt>
+            <dt><Link href={href}>{label}</Link></dt>
             <dd>{value}</dd>
           </div>
         ))}
       </dl>
-      <div className='Section_body'>
-        <p>Les formulaires d’édition arrivent en Phase 6.</p>
+      <div className='Section_body admin-actions'>
+        <Link href='/admin/projects/new' className='btn'>+ Nouveau projet</Link>
+        <Link href='/admin/profile' className='btn btn-secondary'>Modifier le profil</Link>
       </div>
     </div>
   );
