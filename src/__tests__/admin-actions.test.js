@@ -15,6 +15,13 @@ const fakeDb = () => {
   return { from: (table) => { touched.push(table); return chain; } };
 };
 
+// Fake R2: records presign and delete calls.
+const r2 = { presigned: [], deleted: [] };
+vi.mock('@/lib/r2', () => ({
+  presignPut: async (key) => { r2.presigned.push(key); return `https://r2.test/${key}?sig`; },
+  deleteKeys: async (keys) => { r2.deleted.push(...keys); },
+}));
+
 const auth = { admin: false };
 vi.mock('@/lib/admin/auth', () => ({
   requireAdmin: async () => {
@@ -26,6 +33,7 @@ vi.mock('@/lib/admin/auth', () => ({
 const projects = await import('@/app/admin/projects/actions');
 const records = await import('@/app/admin/records');
 const profile = await import('@/app/admin/profile/actions');
+const media = await import('@/app/admin/media');
 
 const form = (fields) => {
   const f = new FormData();
@@ -36,6 +44,8 @@ const form = (fields) => {
 beforeEach(() => {
   auth.admin = false;
   touched.length = 0;
+  r2.presigned.length = 0;
+  r2.deleted.length = 0;
 });
 
 describe('every action refuses a non-admin before touching the database', () => {
@@ -53,10 +63,12 @@ describe('every action refuses a non-admin before touching the database', () => 
     deleteGroup: () => records.deleteGroup('x'),
     moveGroup: () => records.moveGroup('x', 1),
     saveSetting: () => profile.saveSetting('cv', null, form({ cv: 'cv.pdf' })),
+    getUploadUrl: () => media.getUploadUrl({ kind: 'image', scope: 'x', name: 'a.webp', type: 'image/webp', size: 10 }),
   };
   test.each(Object.keys(calls))('%s', async (name) => {
     await expect(calls[name]()).rejects.toThrow('Not allowed.');
     expect(touched).toEqual([]);
+    expect(r2).toEqual({ presigned: [], deleted: [] });
   });
 });
 
@@ -67,6 +79,26 @@ describe('as admin', () => {
     await expect(records.deleteTimelineEntry('admins', 'id')).rejects.toThrow('Unknown table.');
     await expect(records.moveTimelineEntry('projects', 'id', 1)).rejects.toThrow('Unknown table.');
     expect(touched).toEqual([]);
+  });
+
+  test('upload URLs: only allowed types and sizes, keys in the right folder', async () => {
+    const ok = await media.getUploadUrl({ kind: 'image', scope: 'R-Type', name: 'Écran titre.webp', type: 'image/webp', size: 1000 });
+    expect(ok.key).toMatch(/^image\/R-Type\/Ecran-titre-[0-9a-f]{8}\.webp$/);
+    expect(ok.url).toContain(ok.key);
+    const scoped = await media.getUploadUrl({ kind: 'video', scope: '../../admins', name: 'x.mp4', type: 'video/mp4', size: 1000 });
+    expect(scoped.key).toMatch(/^video\/admins\/x-[0-9a-f]{8}\.mp4$/);
+
+    const refused = [
+      { kind: 'image', type: 'text/html', size: 10 },
+      { kind: 'image', type: 'image/svg+xml', size: 10 },
+      { kind: 'document', type: 'application/pdf', size: 50 * 1024 * 1024 },
+      { kind: 'video', type: 'video/mp4', size: 0 },
+      { kind: 'other', type: 'image/png', size: 10 },
+    ];
+    for (const file of refused) {
+      expect((await media.getUploadUrl({ scope: 'x', name: 'f', ...file })).error).toBeTruthy();
+    }
+    expect(r2.presigned).toHaveLength(2);
   });
 
   test('unknown settings key is refused', async () => {
