@@ -8,6 +8,8 @@
 
 .admin-form label {
   display: grid;
+  /* Don't stretch inputs to the tallest field of the row. */
+  align-content: start;
   gap: 0.35rem;
   font-family: var(--font-mono);
   font-size: 0.85rem;
@@ -15,6 +17,9 @@
 }
 
 .admin-form input {
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
   background: var(--bg);
   border: 1px solid var(--rule);
   border-radius: var(--radius);
@@ -156,8 +161,15 @@ button.btn:disabled {
 
 .admin-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* min(): one column on screens narrower than 220px instead of overflowing. */
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
   gap: 1rem;
+}
+
+/* Grid and flex children may shrink below their content's width. */
+.admin-grid > *,
+.list-editor-fields > * {
+  min-width: 0;
 }
 
 .admin-hint {
@@ -172,7 +184,7 @@ button.btn:disabled {
   gap: 0.5rem;
 }
 
-.admin-check input { width: auto; }
+.admin-check input { width: auto; flex: none; }
 
 .admin-field-error { font-size: 0.8rem; }
 
@@ -206,7 +218,8 @@ button.btn:disabled {
 .list-editor-fields {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  /* Fields side by side when there's room, one per line on phones. */
+  grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
   gap: 0.5rem;
 }
 
