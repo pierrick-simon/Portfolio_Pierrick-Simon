@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { mediaUrl } from '@/lib/media';
 
@@ -6,7 +7,13 @@ import { mediaUrl } from '@/lib/media';
 function ProjectCard({ project }) {
   const content = (
     <>
-      <img src={mediaUrl(project.cover)} alt={`Aperçu du Projet ${project.title}`} />
+      <Image
+        src={mediaUrl(project.cover)}
+        alt={`Aperçu du Projet ${project.title}`}
+        width={640}
+        height={360}
+        sizes='(max-width: 600px) 90vw, 260px'
+      />
       <h4>{project.title}</h4>
     </>
   );

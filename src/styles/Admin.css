@@ -568,3 +568,60 @@ button.btn:disabled {
   .list-editor-fields { width: 100%; }
 }
 span.badge { cursor: default; }
+
+/* ---------- Media upload ---------- */
+
+/* Like a label, for fields that contain their own buttons. */
+.admin-field {
+  display: grid;
+  align-content: start;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.media-input {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  min-width: 0;
+  flex: 1;
+}
+
+.media-thumb {
+  flex: none;
+  width: 72px;
+  height: 44px;
+  border: 1px dashed var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.media-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.media-input-main { flex: 1; min-width: 0; display: grid; gap: 0.35rem; }
+.media-input-row { display: flex; gap: 0.5rem; align-items: center; }
+.media-input-row input { flex: 1; min-width: 0; }
+
+.media-upload { flex: none; cursor: pointer; white-space: nowrap; font-family: var(--font-mono); }
+.media-upload.is-busy { cursor: wait; opacity: 0.7; min-width: 4.5rem; text-align: center; }
+
+.media-input progress {
+  width: 100%;
+  height: 4px;
+  appearance: none;
+  border: none;
+  border-radius: 2px;
+  background: var(--rule);
+  accent-color: var(--accent);
+}
+
+.media-input progress::-webkit-progress-bar { background: var(--rule); border-radius: 2px; }
+.media-input progress::-webkit-progress-value { background: var(--accent); border-radius: 2px; }
+.media-input progress::-moz-progress-bar { background: var(--accent); }
+
+@media (max-width: 600px) {
+  .media-thumb { display: none; }
+}

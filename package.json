@@ -13,11 +13,15 @@
     "test": "vitest run",
     "db:seed": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --env-file=.env.local scripts/seed.mjs",
     "db:check": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --env-file=.env.local scripts/check-db.mjs",
-    "test:db": "node --env-file=.env.local node_modules/vitest/vitest.mjs run src/__tests__/data.supabase.test.js"
+    "test:db": "node --env-file=.env.local node_modules/vitest/vitest.mjs run src/__tests__/data.supabase.test.js",
+    "media:upload": "node --env-file=.env.local scripts/upload-media.mjs"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1178.0",
+    "@aws-sdk/s3-request-presigner": "^3.1178.0",
     "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.119.2",
+    "browser-image-compression": "^2.0.2",
     "next": "^16.4.6",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",

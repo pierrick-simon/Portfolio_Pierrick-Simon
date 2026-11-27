@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { mediaUrl } from '@/lib/media';
 
 // `onClick` is optional: without it the card is a plain link to the image.
@@ -11,7 +12,7 @@ function PreviewCard({ image, onClick }) {
 
   return (
     <a href={mediaUrl(image)} onClick={handleClick}>
-      <img src={mediaUrl(image)} alt={`Img ${image}`} loading="lazy" decoding="async" />
+      <Image src={mediaUrl(image)} alt={`Img ${image}`} width={800} height={450} sizes='(max-width: 600px) 92vw, 280px' />
     </a>
   );
 }

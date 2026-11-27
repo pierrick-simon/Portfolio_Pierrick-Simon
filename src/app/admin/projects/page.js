@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getAdmin } from '@/lib/supabase/server';
+import Image from 'next/image';
 import { mediaUrl } from '@/lib/media';
 import MoveButtons from '@/components/admin/MoveButtons';
 import { moveProject, togglePublished } from './actions';
@@ -22,7 +23,7 @@ function ProjectRow({ project, first, last }) {
   const viewHref = project.href ? null : project.published ? `/${project.slug}` : `/admin/preview/${project.slug}`;
   return (
     <li className='admin-item'>
-      {project.cover_url ? <img src={mediaUrl(project.cover_url)} alt='' /> : null}
+      {project.cover_url ? <Image src={mediaUrl(project.cover_url)} alt='' width={64} height={40} unoptimized /> : null}
       <span className='admin-item-title'>
         {project.title}
         <small>/{project.slug}</small>
