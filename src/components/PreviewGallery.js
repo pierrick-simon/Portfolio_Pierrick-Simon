@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import PreviewCard from './PreviewCard';
 import { mediaUrl } from '@/lib/media';
 
@@ -29,8 +30,11 @@ function PreviewGallery({ images }) {
         <div className="Lightbox" onClick={close}>
           <button className="Lightbox_close" onClick={close} aria-label="Fermer">×</button>
           <button className="Lightbox_arrow Lightbox_arrow_left" onClick={prev} aria-label="Image précédente">‹</button>
-          <img
+          <Image
             className="Lightbox_img"
+            width={1920}
+            height={1080}
+            sizes="96vw"
             src={mediaUrl(images[current])}
             alt={`Img ${images[current]}`}
             onClick={(e) => e.stopPropagation()}

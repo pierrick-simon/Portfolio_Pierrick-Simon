@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useState } from 'react';
+import Image from 'next/image';
 import { mediaUrl } from '@/lib/media';
 import { acceptFor, uploadFile } from './uploadFile';
 
@@ -33,7 +34,8 @@ function MediaInput({ name, kind = 'image', scope, value, onChange, defaultValue
   return (
     <div className='media-input'>
       {kind === 'image' && (
-        <span className='media-thumb'>{url ? <img src={url} alt='' /> : null}</span>
+        <span className='media-thumb'>{/* unoptimized: the field can hold any URL while typing */}
+          {url ? <Image src={url} alt='' width={72} height={44} unoptimized /> : null}</span>
       )}
       <div className='media-input-main'>
         <div className='media-input-row'>
