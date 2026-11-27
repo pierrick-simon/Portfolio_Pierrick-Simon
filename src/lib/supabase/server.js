@@ -1,3 +1,4 @@
+import { cache } from 'react';
 import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
 
@@ -28,7 +29,8 @@ export async function createClient() {
 
 // The logged-in user and whether they are in the `admins` table.
 // is_admin() runs in the database with the user's token, the same check RLS uses.
-export async function getAdmin() {
+// cache(): the layout and the page share one check per request.
+export const getAdmin = cache(async () => {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { supabase, user: null, isAdmin: false };
@@ -36,4 +38,4 @@ export async function getAdmin() {
   const { data: isAdmin, error } = await supabase.rpc('is_admin');
   if (error) throw new Error(`Supabase (is_admin): ${error.message}`);
   return { supabase, user, isAdmin: isAdmin === true };
-}
+});

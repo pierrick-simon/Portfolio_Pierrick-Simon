@@ -1,0 +1,115 @@
+/* Login and admin pages. Reuses the site's tokens, sections and .btn. */
+
+.admin-form {
+  display: grid;
+  gap: 1rem;
+  max-width: 360px;
+}
+
+.admin-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.admin-form input {
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  color: var(--text);
+  font: inherit;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  padding: 0.6rem 0.75rem;
+}
+
+.admin-form input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+button.btn {
+  cursor: pointer;
+  font-size: 0.95rem;
+  justify-self: start;
+}
+
+button.btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+  transform: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--rule);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  box-shadow: none;
+}
+
+.admin-error {
+  color: #f08a7e;
+  margin: 0;
+}
+
+.admin-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  max-width: 900px;
+  margin: 1.5rem auto 0;
+  padding: 0 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.admin-bar nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 0;
+}
+
+.admin-stats div {
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.admin-stats dt {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.admin-stats dd {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  color: var(--accent);
+}
+
+.admin-code {
+  overflow-x: auto;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
