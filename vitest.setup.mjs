@@ -5,9 +5,10 @@ import { afterEach } from 'vitest';
 afterEach(cleanup);
 
 // jsdom lacks these browser APIs (used by SectionNav, next/link and <video>).
+// Some test files run in the node environment, where window doesn't exist.
 globalThis.IntersectionObserver = class {
   observe() {}
   unobserve() {}
   disconnect() {}
 };
-window.HTMLMediaElement.prototype.load = () => {};
+if (typeof window !== 'undefined') window.HTMLMediaElement.prototype.load = () => {};
