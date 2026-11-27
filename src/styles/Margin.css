@@ -15,10 +15,11 @@
 
 .Header h1 {
   font-family: var(--font-mono);
-  font-size: 2.1rem;
+  font-size: clamp(1.45rem, 5.5vw, 2.1rem);
   font-weight: 600;
   margin: 0;
   color: var(--text);
+  overflow-wrap: anywhere;
 }
 
 .Header_cursor {
@@ -46,7 +47,8 @@
   border-top: 1px solid var(--rule);
   color: var(--text-dim);
   text-align: center;
-  padding: 1.5rem 1rem;
+  /* Extra room at the bottom so the floating ↑ button never sits on the footer. */
+  padding: 1.5rem 1rem 4.5rem;
   margin-top: 2rem;
   font-family: var(--font-sans);
   font-size: 0.9rem;
@@ -128,9 +130,52 @@
   border-color: var(--accent);
 }
 
+.Nav a {
+  white-space: nowrap;
+}
+
+/* Phones: one line that scrolls sideways, so the sticky bar stays short.
+   The auto margins keep it centred when everything fits. */
 @media (max-width: 600px) {
+  .Header {
+    padding: 2rem 1rem 1.75rem;
+  }
+
+  .Nav {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0.75rem 0.5rem;
+    /* Faded edges hint that the menu can be swiped. */
+    mask-image: linear-gradient(to right, transparent, #000 1.25rem, #000 calc(100% - 1.25rem), transparent);
+  }
+
+  .Nav::-webkit-scrollbar {
+    display: none;
+  }
+
   .Nav a {
     margin: 0 0.4rem;
     font-size: 0.78rem;
+  }
+
+  .Nav a:first-child {
+    margin-left: auto;
+  }
+
+  .Nav a:last-child {
+    margin-right: auto;
+  }
+
+  .floating-button {
+    width: 38px;
+    height: 38px;
+    right: 12px;
+    bottom: 12px;
+    font-size: 1.1rem;
+    /* Lets the text underneath show through while scrolling. */
+    background: rgba(32, 37, 45, 0.85);
+    backdrop-filter: blur(4px);
   }
 }
