@@ -395,9 +395,25 @@ h2, h3, h4 {
 
 .contributor {
   display: flex;
-  gap: 1rem;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  align-items: baseline;
   color: var(--text-dim);
+}
+
+/* A name never splits over two lines, the row wraps instead. */
+.contributor a {
+  white-space: nowrap;
+}
+
+/* Long words and code (e.g. Cuddle's function names) wrap instead of overflowing. */
+.Section p,
+.Section li {
+  overflow-wrap: break-word;
+}
+
+.Section code {
+  overflow-wrap: anywhere;
 }
 
 .demo_cuddle li > strong + ul {
@@ -489,7 +505,26 @@ h4 {
   font-size: 0.95rem;
 }
 
+/* Below the 900px section width, keep a gutter so cards don't touch the screen edges. */
+@media (max-width: 940px) {
+  .Section {
+    margin-inline: 0.75rem;
+  }
+}
+
 @media (max-width: 600px) {
+  .Section {
+    padding-inline: 1.1rem;
+  }
+
+  .Section_body {
+    padding-left: 0;
+  }
+
+  .Section ul {
+    padding-left: 1.25rem;
+  }
+
   .Section_body_preview > a {
     width: 100%;
   }

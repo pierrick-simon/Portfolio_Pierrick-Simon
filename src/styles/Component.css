@@ -25,3 +25,17 @@ video {
 .Section_body_Pres p {
   flex: 1;
 }
+
+/* On phones the cover goes above the text instead of shrinking beside it. */
+@media (max-width: 600px) {
+  .Section_body_Pres {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+  }
+
+  .Section_body_Pres img {
+    width: 100%;
+    max-width: none;
+  }
+}
